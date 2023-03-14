@@ -1,0 +1,60 @@
+﻿@model List<Cliente>
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<div class="container">
+    <h3>
+        Lista de Clientes
+    </h3>
+    <a asp-controller="Cliente" asp-action="Create" class="btn float-end btn-primary" width="10">Crear</a>
+    <a asp-controller="Cliente" asp-action="BuscarPorCedula" class="btn  btn-outline-dark" width="10">Buscar Por Cedula</a>
+
+    <br />
+    <br />
+</div>
+
+
+<div class="contairner">
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Identificacion</td>
+                        <td>Nombres</td>
+                        <td>Apellidos</td>
+                        <td>Pais</td>
+                        <td>Edad</td>
+                        <td>Accion</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Identificacion</td>
+                            <td>@item.Nombres</td>
+                            <td>@item.Apellidos</td>
+                            <td>@item.Pais</td>
+                            <td>@item.Edad</td>
+                            <td>
+
+                                <a asp-controller="Cliente" asp-action="Delete" asp-route-id="@item.Identificacion" class="btn btn-primary">Eliminar</a>
+                                <a asp-controller="Cliente" asp-action="BuscarPorCedulaParams" asp-route-identificacion="@item.Identificacion" asp-route-edad="@item.Edad" class="btn  btn-dark" width="10">Buscar Por Cedula con Parametros</a>
+                                <a asp-controller="Cliente" asp-action="BuscarPorCedulaConcatenado" asp-route-identificacion="@item.Identificacion" asp-route-edad="@item.Edad"  class="btn  btn-dark" width="10">Buscar Por Cedula con Parametros</a>
+
+                                <a asp-controller="Cliente" asp-action="Edit" asp-route-id="@item.Identificacion" class="btn btn-primary">Editar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No existe registros</p>
+        }
+    </div>
+</div>
