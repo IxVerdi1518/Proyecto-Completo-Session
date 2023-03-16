@@ -97,24 +97,24 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public IActionResult EliminarPage(Cliente cliente)
-        {
-            if (list == null)
-                list = new List<Cliente>();
+        //[HttpPost]
+        //public IActionResult EliminarPage(Cliente cliente)
+        //{
+        //    if (list == null)
+        //        list = new List<Cliente>();
 
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].Identificacion == cliente.Identificacion)
-                {
-                    list.Remove(list[i]);
+        //    for (int i = 0; i < list.Count; i++)
+        //    {
+        //        if (list[i].Identificacion == cliente.Identificacion)
+        //        {
+        //            list.Remove(list[i]);
 
-                }
-            }
+        //        }
+        //    }
 
-            return RedirectToAction("ClientesAc");
-        }
-       
+        //    return RedirectToAction("ClientesAc");
+        //}
+
 
         [HttpPost]
         public IActionResult Store(Cliente cliente)
@@ -186,7 +186,7 @@ namespace WebApplication1.Controllers
             //return View(cliente);
         }
         [Route("Cliente/Edit/{identificacion}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult Edit(string identificacion)
         {
             List<Cliente> list = SessionHelper.GetObjectFromJson<List<Cliente>>(HttpContext.Session, "clientes");
@@ -215,7 +215,7 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index");
             }
             else
-            {
+            {   
                 ViewBag.Pais = SelectPais();
                 return View("Edit", cliente);
 
